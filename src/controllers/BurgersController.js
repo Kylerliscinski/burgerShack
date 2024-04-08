@@ -7,6 +7,7 @@ export class BurgersController extends BaseController {
     this.router.get('', this.getBurgers)
     this.router.get('/test', this.testBurgers)
     this.router.post('', this.createBurger)
+    this.router.delete('/:burgerId', this.eatBurger)
   }
 
   testBurgers(request, response, next) {
@@ -38,7 +39,7 @@ export class BurgersController extends BaseController {
     try {
       const burgerId = request.params.burgerId
       await burgersService.eatBurger(burgerId)
-      response.send("You ate that burger already")
+      response.send("You ate that burger")
     } catch (error) {
       next(error)
     }
